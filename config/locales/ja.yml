@@ -1,0 +1,17 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        nickname: "ニックネーム"
+        email: "メールアドレス"
+        password: "パスワード"
+        current_password: "パスワード"
+        password_confirmation: "パスワード（確認用）"
+    errors:
+      models:
+        user:
+          attributes:
+            nickname:
+              blank: を入力してください
+            password:
+              too_short: は６文字以上で入力してください
