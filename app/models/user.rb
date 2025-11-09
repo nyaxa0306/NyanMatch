@@ -6,4 +6,7 @@ class User < ApplicationRecord
 
   validates :nickname, length: { maximum: 20 }, presence: true
   validates :password, length: { minimum: 6 }, if: -> { password.present? }
+  validates :introduction, length: { maximum: 300 }
+
+  enum role: { adopter: 0, protector: 1 } # adopter=里親希望  protector=保護主
 end

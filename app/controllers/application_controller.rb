@@ -6,14 +6,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:nickname])
-  end
-
-  def after_sign_in_path_for(resource)
-    root_path
-  end
-  def after_sign_out_path_for(resource_of_scope)
-    root_path
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname,:role, :introduction])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:nickname,:role, :introduction])
   end
 end
