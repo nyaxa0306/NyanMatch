@@ -1,0 +1,90 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4">猫ちゃんの情報を編集</h2>
+
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-sm">
+        <div class="card-body">
+
+          <% if @cat.errors.any? %>
+            <div class="alert alert-danger">
+              <ul>
+                <% @cat.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <%= form_with model: @cat, method: :patch, local: true do |f| %>
+            <!-- 募集ステータス -->
+            <div class="mb-3">
+              <%= f.label :status, "募集ステータス", class: "form-label" %>
+              <%= f.select :status, [["募集中", "募集中"], ["トライアル中", "トライアル中"], ["譲渡済み", "譲渡済み"]],
+                  {}, class: "form-select" %>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :name, "名前", class: "form-label" %>
+              <%= f.text_field :name, class: "form-control", required: true %>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :age, "年齢", class: "form-label" %>
+              <%= f.number_field :age, class: "form-control", min: 0, required: true %>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :gender, "性別", class: "form-label d-block" %>
+              <div class="form-check form-check-inline">
+                <%= f.radio_button :gender, "male", id: "gender_male", class: "form-check-input" %>
+                <%= f.label :gender, "オス", for: "gender_male", class: "form-check-label" %>
+              </div>
+              <div class="form-check form-check-inline">
+                <%= f.radio_button :gender, "female", id: "gender_female", class: "form-check-input" %>
+                <%= f.label :gender, "メス", for: "gender_female", class: "form-check-label" %>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :breed, "種類", class: "form-label" %>
+              <%= f.text_area :breed, rows: 4, class: "form-control", placeholder: "例：雑種、スコティッシュフォールドなど" %>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :personality, "性格", class: "form-label" %>
+              <%= f.text_area :personality, rows: 4, class: "form-control", placeholder: "例：おとなしくて人懐っこい性格です。" %>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :helth, "健康状態", class: "form-label" %>
+              <%= f.text_area :helth, rows: 4, class: "form-control", placeholder: "例：ワクチン接種済み・避妊済み" %>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :image, "写真", class: "form-label" %>
+              <%= f.file_field :image, direct_upload: true, class: "form-control" %>
+              <% if @cat.image.attached? %>
+                <div class="mt-3">
+                  <%= image_tag @cat.image, class: "rounded border", width: "200" %>
+                </div>
+              <% else %>
+                <div class="mt-3">
+                  <%= image_tag "default_cat.jpg", class: "rounded border", width: "200" %>
+                </div>
+              <% end %>
+            </div>
+
+            <div class="d-grid">
+              <%= f.submit "更新する", class: "btn btn-primary" %>
+            </div>
+          <% end %>
+
+          <div class="text-center mt-3">
+            <%= link_to "戻る", cat_path(@cat), class: "btn btn-link" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

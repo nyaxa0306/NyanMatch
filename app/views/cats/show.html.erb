@@ -1,0 +1,47 @@
+<div class="container mt-5">
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h2 class="card-title mb-4 d-flex align-items-center">
+        <%= @cat.name %>
+        <!-- 募集ステータス -->
+        <% if @cat.status.present? %>
+          <% badge_class = case @cat.status
+            when "募集中" then "bg-success"
+            when "トライアル中" then "bg-warning text-dark"
+            when "譲渡済み" then "bg-secondary"
+          end %>
+          <span class="badge ms-3 <%= badge_class %>">
+            <%= @cat.status %>
+          </span>
+        <% end %>
+      </h2>
+
+      <div class="text-center mb-4">
+        <%= image_tag @cat.display_image(width: 500, height: 500), class: "rounded" %>
+      </div>
+      <ul class="list-group list-group-flush mb-4">
+        <li class="list-group-item"><strong>年齢:</strong> <%= @cat.age %> 歳</li>
+        <li class="list-group-item"><strong>性別:</strong> <%= @cat.gender == "male" ? "オス" : "メス" %></li>
+        <li class="list-group-item"><strong>種類:</strong> <%= @cat.breed %></li>
+        <li class="list-group-item"><strong>性格:</strong> <%= @cat.personality %></li>
+        <li class="list-group-item"><strong>健康状態:</strong> <%= @cat.helth %></li>
+        <li class="list-group-item"><strong>投稿者:</strong> 
+          <%= link_to @cat.user.nickname, user_path(@cat.user), class: "text-decoration-none" if @cat.user %>
+        </li>
+      </ul>
+
+      <!-- 投稿者のみ表示 -->
+      <% if current_user == @cat.user %>
+        <div class="d-flex gap-2">
+          <%= link_to "編集", edit_cat_path(@cat), class: "btn btn-primary" %>
+          <%= link_to "削除", cat_path(@cat), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
+        </div>
+      <% end %>
+
+      <div class="mt-4">
+        <%= link_to "一覧に戻る", cats_path, class: "btn btn-outline-secondary" %>
+      </div>
+    </div>
+  </div>
+</div>
+

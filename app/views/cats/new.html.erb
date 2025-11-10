@@ -1,0 +1,73 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h2 class="text-center mb-4">新しい猫ちゃんを登録</h2>
+
+          <% if @cat.errors.any? %>
+            <div class="alert alert-danger">
+              <ul>
+                <% @cat.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <%= form_with model: @cat, local: true do |f| %>
+            <div class="mb-3">
+              <%= f.label :name, "名前", class: "form-label" %>
+              <%= f.text_field :name, placeholder: "例：ミケ", class: "form-control" %>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :age, "年齢", class: "form-label" %>
+              <%= f.number_field :age, min: 0, placeholder: "例：2", class: "form-control" %>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :gender, "性別", class: "form-label d-block" %>
+                <div class="form-check form-check-inline">
+                  <%= f.radio_button :gender, "male", id: "gender_male", class: "form-check-input" %>
+                  <%= f.label :gender, "オス", class: "form-check-label" %>
+                </div>
+                <div class="form-check form-check-inline">
+                  <%= f.radio_button :gender, "female", id: "gender_female", class: "form-check-input" %>
+                  <%= f.label :gender, "メス", class: "form-check-label" %>
+                </div>
+              </div>
+
+            <div class="mb-3">
+              <%= f.label :breed, "種類", class: "form-label" %>
+              <%= f.text_field :breed, placeholder: "例：雑種、スコティッシュフォールドなど", class: "form-control" %>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :personality, "性格", class: "form-label" %>
+              <%= f.text_area :personality, rows: 3, placeholder: "例：おとなしくて人懐っこい性格です。", class: "form-control" %>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :helth, "健康状態", class: "form-label" %>
+              <%= f.text_area :helth, rows: 3, placeholder: "例：ワクチン接種済み・避妊済み", class: "form-control" %>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :image, "写真", class: "form-label" %>
+              <%= f.file_field :image, direct_upload: true, class: "form-control" %>
+            </div>
+
+            <div class="d-grid">
+              <%= f.submit "登録する", class: "btn btn-success" %>
+            </div>
+          <% end %>
+
+          <div class="text-center mt-3">
+            <%= link_to "戻る", cats_path, class: "btn btn-link" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

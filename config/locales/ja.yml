@@ -7,6 +7,14 @@ ja:
         password: "パスワード"
         current_password: "パスワード"
         password_confirmation: "パスワード（確認用）"
+      cat:
+        name: "名前"
+        age: "年齢"
+        gender: "性別"
+        breed: "種類"
+        personality: "性格"
+        helth: "健康状態"
+        status: "募集ステータス"
     errors:
       models:
         user:
