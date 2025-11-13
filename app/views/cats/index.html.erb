@@ -24,6 +24,7 @@
             <ul class="list-group list-group-flush mb-4">
               <li class="list-group-item"><strong>年齢:</strong> <%= cat.age %> 歳</li>
               <li class="list-group-item"><strong>性別:</strong> <%= cat.gender == "male" ? "オス" : "メス" %></li>
+              <li class="list-group-item"><strong>地域:</strong> <%= cat.prefecture.name %></li>
             </ul>
 
             <%= link_to "詳細を見る", cat_path(cat), class: "btn btn-outline-primary btn-sm" %>

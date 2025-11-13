@@ -1,10 +1,12 @@
 class Cat < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :prefecture
+
   belongs_to :user
   has_one_attached :image
 
-  validates :name, length: { maximum: 20 }, presence: { message: "を入力してください"}
-  validates :age, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, presence: { message: "を入力してください"}
-  validates :gender, presence: true
+  validates :name, length: { maximum: 20 }, presence: true
+  validates :age, :gender, :prefecture_id, presence: true
   validates :gender, inclusion: { in: %w[male female] }
   validates :breed, length: { maximum: 50 }
   validates :personality, :helth, length: { maximum: 100 }

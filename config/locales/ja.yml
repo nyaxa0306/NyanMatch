@@ -12,6 +12,7 @@ ja:
         name: "名前"
         age: "年齢"
         gender: "性別"
+        prefecture_id: "地域"
         breed: "種類"
         personality: "性格"
         helth: "健康状態"

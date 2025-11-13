@@ -45,6 +45,16 @@
             </div>
 
             <div class="mb-3">
+              <%= f.label :prefecture_id, "地域（都道府県）", class: "form-label" %>
+              <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, { prompt: "選択してください" }, class: "form-select #{'is-invalid' if @cat.errors[:prefecture_id].present?}" %>
+              <% if @cat.errors[:prefecture_id].present? %>
+                <div class="invalid-feedback">
+                  <%= @cat.errors[:prefecture_id].first %>
+                </div>
+              <% end %>
+            </div>
+
+            <div class="mb-3">
               <%= f.label :gender, "性別", class: "form-label d-block" %>
               <div class="form-check form-check-inline">
                 <%= f.radio_button :gender, "male", id: "gender_male", class: "form-check-input" %>

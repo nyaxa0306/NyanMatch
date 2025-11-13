@@ -6,7 +6,7 @@ RSpec.describe Cat, type: :model do
 
   describe "バリデーション" do
     context "有効な場合" do
-      it "名前、年齢、性別が揃っている場合有効になること" do
+      it "名前、年齢、性別、地域が揃っている場合有効になること" do
         expect(cat).to be_valid
       end
     end
@@ -28,6 +28,12 @@ RSpec.describe Cat, type: :model do
         cat.age = nil
         expect(cat).not_to be_valid
         expect(cat.errors[:age]).to include("を入力してください")
+      end
+
+      it "地域が空欄の場合無効になること" do
+        cat.prefecture_id = nil
+        expect(cat).not_to be_valid
+        expect(cat.errors[:prefecture_id]).to include("を入力してください")
       end
 
       it "性別が空欄の場合無効になること" do
