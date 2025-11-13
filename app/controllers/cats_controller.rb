@@ -38,7 +38,7 @@ class CatsController < ApplicationController
 
   def destroy
     @cat.destroy
-    redirect_to cats_path, notice: "猫ちゃんの情報を削除しました"
+    redirect_to cats_path, alert: "猫ちゃんの情報を削除しました"
   end
 
   private

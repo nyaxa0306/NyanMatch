@@ -7,6 +7,7 @@ ja:
         password: "パスワード"
         current_password: "パスワード"
         password_confirmation: "パスワード（確認用）"
+        introduction: "自己紹介"
       cat:
         name: "名前"
         age: "年齢"

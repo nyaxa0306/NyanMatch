@@ -1,11 +1,4 @@
 Rails.application.routes.draw do
-  get "cats/index"
-  get "cats/show"
-  get "cats/new"
-  get "cats/create"
-  get "cats/edit"
-  get "cats/update"
-  get "cats/destroy"
   root "pages#home"
 
   devise_for :users, controllers: {

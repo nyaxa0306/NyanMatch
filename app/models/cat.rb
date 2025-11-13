@@ -2,8 +2,12 @@ class Cat < ApplicationRecord
   belongs_to :user
   has_one_attached :image
 
-  validates :name, :age, :gender, presence: true
-  validates :gender, inclusion: { in: %w[male female], allow_blank: true }
+  validates :name, length: { maximum: 20 }, presence: { message: "を入力してください"}
+  validates :age, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, presence: { message: "を入力してください"}
+  validates :gender, presence: true
+  validates :gender, inclusion: { in: %w[male female] }
+  validates :breed, length: { maximum: 50 }
+  validates :personality, :helth, length: { maximum: 100 }
 
   after_initialize :set_default_status, if: :new_record?
 
@@ -13,7 +17,7 @@ class Cat < ApplicationRecord
 
   def display_image(width: 400, height: 300)
     if image.attached?
-      image.variant(resize_to_limit: [width, height]).processed
+      image.variant(resize_to_limit: [width, height])
     else
       ActionController::Base.helpers.asset_path("default_cat.jpg")
     end
