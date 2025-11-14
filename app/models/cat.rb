@@ -25,6 +25,37 @@ class Cat < ApplicationRecord
     end
   end
 
+  # 検索処理
+  scope :with_keyword, ->(keyword) {
+    return all unless keyword.present?
+    kw = "%#{keyword}%"
+    where("name LIKE ? OR breed LIKE ? OR personality LIKE ?", kw, kw, kw)
+  }
+
+  scope :with_prefecture, ->(prefecture_id) {
+    return all unless prefecture_id.present?
+    where(prefecture_id: prefecture_id)
+  }
+
+  scope :with_gender, ->(gender) {
+    return all unless gender.present?
+    where(gender: gender)
+  }
+
+  scope :with_status, ->(status) {
+    return all unless status.present?
+    where(status: status)
+  }
+
+  def self.search(params)
+    Cat
+      .with_keyword(params[:keyword])
+      .with_prefecture(params[:prefecture_id])
+      .with_gender(params[:gender])
+      .with_status(params[:status])
+      .order(created_at: :desc)
+  end
+
   private
 
   def set_default_status

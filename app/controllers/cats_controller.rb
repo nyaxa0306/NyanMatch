@@ -4,7 +4,7 @@ class CatsController < ApplicationController
   before_action :authorize_user!, only: [:edit, :update, :destroy]
 
   def index
-    @cats = Cat.includes(:user).order(created_at: :desc)
+    @cats = Cat.includes(:user).search(params)
   end
 
   def show

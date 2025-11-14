@@ -1,6 +1,29 @@
 <div class="container mt-4">
   <h2 class="mb-4 text-center">猫ちゃん一覧</h2>
 
+  <!-- 検索フォーム -->
+  <div class="mb-4">
+    <%= form_with url: cats_path, method: :get, local: true, class: "d-flex gap-2" do %>
+      <!-- フリーワード -->
+      <%= text_field_tag :keyword, params[:keyword], placeholder: "名前、種類、性格など", class: "form-control w-auto" %>
+      <!-- 地域 -->
+      <%= select_tag :prefecture_id, options_from_collection_for_select(Prefecture.all, :id, :name, params[:prefecture_id]), include_blank: "全ての地域", class: "form-select w-auto" %>
+      <!-- 性別 -->
+      <%= select_tag :gender, options_for_select([["すべて", ""], ["オス", "male"], ["メス", "female"]], params[:gender]), class: "form-select w-auto" %>
+      <!-- 募集ステータス -->
+      <%= select_tag :status, options_for_select([["すべて", ""], ["募集中", "募集中"], ["トライアル中", "トライアル中"], ["譲渡済み", "譲渡済み"]], params[:status]), class: "form-select w-auto" %>
+      <%= submit_tag "検索", class: "btn btn-primary w-auto" %>
+      <%= link_to "リセット", cats_path, class: "btn btn-outline-secondary w-auto" %>
+    <% end %>
+  </div>
+
+  <!-- 件数表示 -->
+  <% if @cats.any? %>
+    <p class="text-muted"><%= @cats.count %> 件の猫ちゃんが見付かりました</p>
+  <% else %>
+    <p class="text-muted">猫ちゃんが見つかりませんでした</p>
+  <% end %>
+
   <div class="row">
     <% @cats.each do |cat| %>
       <div class="col-md-4 mb-4">

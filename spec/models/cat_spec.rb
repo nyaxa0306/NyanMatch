@@ -105,6 +105,62 @@ RSpec.describe Cat, type: :model do
     end
   end
 
+  describe "検索" do
+    let!(:cat1) { create(:cat, name: "壱号", gender: "male", prefecture_id: 1, breed: "雑種", personality: "おとなしい", status: "募集中")}
+    let!(:cat2) { create(:cat, name: "弐号", gender: "female", prefecture_id: 47, breed: "ノルウェージャン", personality: "やんちゃ", status: "譲渡済み")}
+
+    context "キーワード検索" do
+      it "名前が一致した場合ヒットすること" do
+        result = Cat.search(keyword: "壱号")
+        expect(result).to include(cat1)
+        expect(result).not_to include(cat2)
+      end
+
+      it "性格が一致した場合ヒットすること" do
+        result = Cat.search(keyword: "やんちゃ")
+        expect(result).to include(cat2)
+        expect(result).not_to include(cat1)
+      end
+
+      it "種類が一致した場合ヒットすること" do
+        result = Cat.search(keyword: "ノルウェージャン")
+        expect(result).to include(cat2)
+        expect(result).not_to include(cat1)
+      end
+    end
+
+    context "地域検索" do
+      it "prefecture_idが一致した猫だけヒットすること" do
+        result = Cat.search(prefecture_id: 47)
+        expect(result).to include(cat2)
+        expect(result).not_to include(cat1)
+      end
+    end
+
+    context "性別検索" do
+      it "maleの猫だけヒットすること" do
+        result = Cat.search(gender: "male")
+        expect(result).to include(cat1)
+        expect(result).not_to include(cat2)
+      end
+    end
+
+    context "募集ステータス検索" do
+      it "募集中の猫だけヒットすること" do
+        result = Cat.search(status: "募集中")
+        expect(result).to include(cat1)
+        expect(result).not_to include(cat2)
+      end
+    end
+
+    context "複合検索" do
+      it "キーワード+性別の両方一致した猫がヒットすること" do
+        result = Cat.search(keyword: "壱号", gender: "male")
+        expect(result).to contain_exactly(cat1)
+      end
+    end
+  end
+
   describe "関連付け" do
     it "userに属していること" do
       expect(Cat.reflect_on_association(:user).macro).to eq(:belongs_to)
