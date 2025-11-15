@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root "pages#home"
 
+  get "favorites", to: "favorites#index", as: :favorite_cats
+
   devise_for :users, controllers: {
     registrations: "users/registrations"
   }
@@ -10,7 +12,9 @@ Rails.application.routes.draw do
       get "edit_profile"
     end
   end
-  resources :cats
+  resources :cats do
+    resource :favorite, only: [:create, :destroy]
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

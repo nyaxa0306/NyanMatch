@@ -14,6 +14,14 @@
             <%= @cat.status %>
           </span>
         <% end %>
+        <!-- お気に入り -->
+        <% if user_signed_in? %>
+          <% if current_user.favorite_cats.exists?(@cat.id) %>
+            <%= button_to "★ お気に入り解除", cat_favorite_path(@cat), method: :delete, class: "btn btn-warning ms-3" %>
+          <% else %>
+            <%= button_to "☆ お気に入り", cat_favorite_path(@cat), method: :post, class: "btn btn-outline-warning ms-3" %>
+          <% end %>
+        <% end %>
       </h2>
 
       <div class="text-center mb-4">

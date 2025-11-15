@@ -42,6 +42,10 @@
               <span class="badge ms-2 <%= badge_class %>">
                 <%= status %>
               </span>
+              <!-- お気に入り -->
+              <% if user_signed_in? && current_user.favorite_cats.exists?(cat.id) %>
+                <span class="badge bg-warning text-dark ms-2">★</span>
+              <% end %>
             </h5>
             <!-- 基本情報 -->
             <ul class="list-group list-group-flush mb-4">

@@ -5,6 +5,9 @@ class Cat < ApplicationRecord
   belongs_to :user
   has_one_attached :image
 
+  has_many :favorites, dependent: :destroy
+  has_many :favorited_users, through: :favorites, source: :user
+
   validates :name, length: { maximum: 20 }, presence: true
   validates :age, :gender, :prefecture_id, presence: true
   validates :gender, inclusion: { in: %w[male female] }
