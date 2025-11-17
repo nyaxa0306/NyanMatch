@@ -23,6 +23,7 @@
               <% end %>
               <!-- 共通 -->
               <li><%= link_to "お気に入り一覧", favorite_cats_path, class: "dropdown-item", style: "color: #6b4f47;" %></li>
+              <li><%= link_to "応募申請一覧", applications_path, class: "dropdown-item", style: "color: #6b4f47;" %></li>
               <li><%= link_to "マイページ", user_path(current_user), class: "dropdown-item", style: "color: #6b4f47;" %></li>
               <li><%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item", style: "color: #6b4f47;" %></li>
             </ul>

@@ -17,6 +17,11 @@ ja:
         personality: "性格"
         helth: "健康状態"
         status: "募集ステータス"
+      application:
+        statuses:
+          pending: "未対応"
+          approved: "承認"
+          rejected: "却下"
     errors:
       models:
         user:

@@ -7,6 +7,7 @@ class Cat < ApplicationRecord
 
   has_many :favorites, dependent: :destroy
   has_many :favorited_users, through: :favorites, source: :user
+  has_many :applications, dependent: :destroy
 
   validates :name, length: { maximum: 20 }, presence: true
   validates :age, :gender, :prefecture_id, presence: true

@@ -39,12 +39,28 @@
         </li>
       </ul>
 
-      <!-- 投稿者のみ表示 -->
       <% if current_user == @cat.user %>
+        <!-- 投稿者のみ表示 -->
         <div class="d-flex gap-2">
           <%= link_to "編集", edit_cat_path(@cat), class: "btn btn-primary" %>
           <%= link_to "削除", cat_path(@cat), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
         </div>
+      <% else %>
+          <!-- 投稿者以外表示 -->
+        <%= form_with model: Application.new, url: applications_path do |f| %>
+          <%= f.hidden_field :cat_id, value: @cat.id %>
+
+          <div class="mb-3">
+            <%= f.label :message, "応募メッセージ" %>
+            <%= f.text_area :message, rows: 4, class: "form-control" %>
+          </div>
+
+          <% if user_signed_in? %>
+            <%= f.submit "応募する", class: "btn btn-primary" %>
+          <% else %>
+            <%= link_to "ログインして応募", new_user_session_path, class: "btn btn-primary" %>
+          <% end %>
+        <% end %>
       <% end %>
 
       <div class="mt-4">

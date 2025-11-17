@@ -34,18 +34,18 @@ RSpec.describe User, type: :model do
         expect(user.errors[:introduction]).to include("は300文字以内で入力してください")
       end
     end
+  end
 
-    context "関連付け" do
-      it "複数の猫を登録できること" do
-        association = User.reflect_on_association(:cats)
-        expect(association.macro).to eq :has_many
-      end
+  describe "関連付け" do
+    it "複数の猫を登録できること" do
+      association = User.reflect_on_association(:cats)
+      expect(association.macro).to eq :has_many
+    end
 
-      it "ユーザー削除時、関連する猫も削除されること" do
-        user = create(:user)
-        create_list(:cat, 3, user: user)
-        expect { user.destroy }.to change { Cat.count }.by(-3)
-      end
+    it "ユーザー削除時、関連する猫も削除されること" do
+      user = create(:user)
+      create_list(:cat, 3, user: user)
+      expect { user.destroy }.to change { Cat.count }.by(-3)
     end
   end
 end
