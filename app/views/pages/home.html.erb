@@ -1,2 +1,43 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<section class="hero-section position-relative text-center text-white py-5" style="background: linear-gradient(135deg, #f9cdd6, #f6e5c9);">
+  <div class="container py-5">
+    <h1 class="fw-bold mb-3" style="font-size: 2.8rem;">
+      新たなオトモと出会う場所
+    </h1>
+
+    <p class="lead mb-4" style="color: #5e4a4a; font-size: 1.2rem;">
+      あなたの毎日に、そっと寄り添う猫とのご縁をつなぎます。
+    </p>
+    <!-- 検索フォーム -->
+    <div class="mt-4">
+      <%= form_with url: cats_path, method: :get, local: true, class: "d-flex justify-content-center gap-2" do %>
+        <!-- フリーワード -->
+        <%= text_field_tag :keyword, params[:keyword], placeholder: "名前、種類、性格など", class: "form-control w-auto" %>
+        <!-- 地域 -->
+        <%= select_tag :prefecture_id, options_from_collection_for_select(Prefecture.all, :id, :name, params[:prefecture_id]), include_blank: "全ての地域", class: "form-select w-auto" %>
+        <!-- 性別 -->
+        <%= select_tag :gender, options_for_select([["すべて", ""], ["オス", "male"], ["メス", "female"]], params[:gender]), class: "form-select w-auto" %>
+        <!-- 募集ステータス -->
+        <%= select_tag :status, options_for_select([["すべて", ""], ["募集中", "募集中"], ["トライアル中", "トライアル中"], ["譲渡済み", "譲渡済み"]], params[:status]), class: "form-select w-auto" %>
+        <%= submit_tag "検索", class: "btn btn-primary w-auto" %>
+        <%= link_to "リセット", cats_path, class: "btn btn-outline-secondary w-auto" %>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<div class="container mt-4">
+  <h2 class="mb-4">新着の猫ちゃん</h2>
+  <div class="row">
+    <% @recent_cats.each do |cat| %>
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm h-100">
+          <%= image_tag cat.display_image(width: 400, height: 300), class: "card-img-top rounded", style: "object-fit: contain; width: 100%; height: 200px; background-color: #f8f9fa;" %>
+          <div class="card-body">
+            <h5 class="card-title"><%= cat.name %></h5>
+            <%= link_to "詳細を見る", cat_path(cat), class: "btn btn-sm btn-outline-primary" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

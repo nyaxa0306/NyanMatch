@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :update] do
     member do
       get "edit_profile"
+      get "cats", to: "cats#user_cats"
     end
   end
   resources :cats do

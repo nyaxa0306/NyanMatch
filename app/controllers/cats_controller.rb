@@ -7,6 +7,11 @@ class CatsController < ApplicationController
     @cats = Cat.includes(:user).search(params)
   end
 
+  def user_cats
+    @user = User.find(params[:id])
+    @cats = @user.cats.order(created_at: :desc)
+  end
+
   def show
   end
 

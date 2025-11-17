@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg shadow-sm" style="background: #fff8e7; border-bottom: 1px solid #f0e6e6;">
   <div class="container-fluid">
-    <%= link_to "にゃんまっち。", root_path, class: "navbar-brand" %>
+    <%= link_to "にゃんまっち。", root_path, class: "navbar-brand fw-bold", style: "color: #8a6c63; font-size: 1.3rem;" %>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -9,18 +9,31 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <% if user_signed_in? %>
-          <li class="nav-item">
-            <%= link_to "マイページ", user_path(current_user), class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "nav-link" %>
+        <!-- ログイン中 -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="userMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #6b4f47;">
+              メニュー
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu" style="border-radius: 12px; background: #fffaf7;">
+              <!-- 保護主のみ表示 -->
+              <% if current_user.protector? %>
+                <li><%= link_to "猫ちゃん新規登録", new_cat_path, class: "dropdown-item", style: "color: #6b4f47;" %></li>
+                <li><%= link_to "登録した猫ちゃん一覧", cats_user_path(current_user), class: "dropdown-item", style: "color: #6b4f47;" %></li>
+                <li><hr class="dropdown-divider"></li>
+              <% end %>
+              <!-- 共通 -->
+              <li><%= link_to "お気に入り一覧", favorite_cats_path, class: "dropdown-item", style: "color: #6b4f47;" %></li>
+              <li><%= link_to "マイページ", user_path(current_user), class: "dropdown-item", style: "color: #6b4f47;" %></li>
+              <li><%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item", style: "color: #6b4f47;" %></li>
+            </ul>
           </li>
         <% else %>
+        <!-- 未ログイン -->
           <li class="nav-item">
-            <%= link_to "新規登録", new_user_registration_path, class: "nav-link" %>
+            <%= link_to "新規登録", new_user_registration_path, class: "nav-link", style: "color: #6b4f47;" %>
           </li>
           <li class="nav-item">
-            <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
+            <%= link_to "ログイン", new_user_session_path, class: "nav-link", style: "color: #6b4f47;" %>
           </li>
         <% end %>
       </ul>

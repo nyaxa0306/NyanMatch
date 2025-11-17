@@ -3,7 +3,7 @@
 
   <!-- 検索フォーム -->
   <div class="mb-4">
-    <%= form_with url: cats_path, method: :get, local: true, class: "d-flex gap-2" do %>
+    <%= form_with url: cats_path, method: :get, local: true, class: "d-flex justify-content-center gap-2" do %>
       <!-- フリーワード -->
       <%= text_field_tag :keyword, params[:keyword], placeholder: "名前、種類、性格など", class: "form-control w-auto" %>
       <!-- 地域 -->

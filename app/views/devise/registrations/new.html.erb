@@ -58,6 +58,11 @@
                   <%= resource.errors[:password_confirmation].first %>
                 </div>
               <% end %>
+
+              <div class="mb-3">
+                <%= f.label :role, "ユーザー区分", class: "form-label" %>
+                <%= f.select :role, [["里親希望さん", "adopter"], ["保護主さん", "protector"]], {}, class: "form-select" %>
+              </div>
             </div>
 
             <div class="d-grid">
