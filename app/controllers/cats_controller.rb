@@ -13,6 +13,7 @@ class CatsController < ApplicationController
   end
 
   def show
+    @application = Application.new(cat: @cat)
   end
 
   def new
@@ -53,7 +54,7 @@ class CatsController < ApplicationController
   end
 
   def authorize_user!
-    unless @cat.user == current_user || current_user.role == "protecter"
+    unless @cat.user == current_user
       redirect_to cats_path, alert: "権限がありません"
     end
   end

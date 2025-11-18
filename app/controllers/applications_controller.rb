@@ -17,7 +17,7 @@ class ApplicationsController < ApplicationController
     if @application.save
       redirect_to cat_path(@application.cat), notice: "応募が完了しました"
     else
-      redirect_to cat_path(@application.cat), alert: "応募に失敗しました"
+      redirect_to cat_path(@application.cat_id), alert: "応募に失敗しました"
     end
   end
 
