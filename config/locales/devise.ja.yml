@@ -1,0 +1,44 @@
+ja:
+  devise:
+    confirmations:
+      confirmed: "メールアドレスが確認されました。"
+      send_instructions: "確認メールを送信しました。"
+      send_paranoid_instructions: "確認メールを送信しました。"
+    failure:
+      already_authenticated: "すでにログインしています。"
+      inactive: "アカウントが有効化されていません。"
+      invalid: "メールアドレスまたはパスワードが正しくありません。"
+      locked: "アカウントがロックされています。"
+      last_attempt: "残り1回の試行でロックされます。"
+      not_found_in_database: "メールアドレスまたはパスワードが正しくありません。"
+      timeout: "セッションの有効期限が切れました。再度ログインしてください。"
+      unauthenticated: "ログインまたは登録が必要です。"
+      unconfirmed: "メールアドレスの確認が必要です。"
+    mailer:
+      confirmation_instructions:
+        subject: "メールアドレスの確認手続き"
+      reset_password_instructions:
+        subject: "パスワードの再設定手続き"
+      unlock_instructions:
+        subject: "アカウントのロック解除手続き"
+    passwords:
+      no_token: "このページにアクセスするには、パスワード再設定メールからアクセスしてください。"
+      send_instructions: "パスワード再設定メールを送信しました。"
+      updated: "パスワードが変更されました。"
+      updated_not_active: "パスワードが変更されましたが、アカウントは有効ではありません。"
+    registrations:
+      destroyed: "アカウントを削除しました。"
+      signed_up: "登録が完了しました。ようこそ！"
+      signed_up_but_inactive: "登録は完了しましたが、アカウントが有効化されていません。"
+      signed_up_but_locked: "登録は完了しましたが、アカウントがロックされています。"
+      signed_up_but_unconfirmed: "確認メールを送信しました。メールを確認してください。"
+      update_needs_confirmation: "メールアドレス変更を有効化するための確認メールを送信しました。"
+      updated: "アカウント情報を更新しました。"
+    sessions:
+      signed_in: "ログインしました。"
+      signed_out: "ログアウトしました。"
+      already_signed_out: "すでにログアウトしています。"
+    unlocks:
+      send_instructions: "ロック解除メールを送信しました。"
+      send_paranoid_instructions: "ロック解除メールを送信しました。"
+      unlocked: "アカウントのロックを解除しました。"

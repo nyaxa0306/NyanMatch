@@ -1,0 +1,43 @@
+<div class="container mt-5">
+  <h2 class="mb-4">お気に入り一覧</h2>
+
+  <% if @favorite_cats.any? %>
+    <div class="row">
+      <% @favorite_cats.each do |cat| %>
+        <div class="col-md-4 mb-4">
+          <div class="card shadow-sm">
+            <%= image_tag cat.display_image(width: 400, height: 300), class: "card-img-top", style: "object-fit: contain; width: 100%; height: 200px; background-color: #f8f9fa;" %>
+
+            <div class="card-body">
+              <h5 class="card-title d-flex align-items-center">
+                <%= cat.name %>
+                <!-- 募集ステータス -->
+                <% status = cat.status || "募集中" %>
+                <% badge_class = case status
+                  when "募集中" then "bg-success"
+                  when "トライアル中" then "bg-warning text-dark"
+                  when "譲渡済み" then "bg-secondary"
+                end %>
+                <span class="badge ms-2 <%= badge_class %>">
+                  <%= status %>
+                </span>
+              </h5>
+              <!-- 基本情報 -->
+              <ul class="list-group list-group-flush mb-4">
+                <li class="list-group-item"><strong>年齢:</strong> <%= cat.age %> 歳</li>
+                <li class="list-group-item"><strong>性別:</strong> <%= cat.gender == "male" ? "オス" : "メス" %></li>
+                <li class="list-group-item"><strong>地域:</strong> <%= cat.prefecture.name %></li>
+              </ul>
+
+              <%= link_to "詳細を見る", cat_path(cat), class: "btn btn-primary" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p>まだお気に入りした猫はいません。</p>
+  <% end %>
+
+  <%= link_to "一覧に戻る", cats_path, class: "btn btn-outline-secondary mt-3" %>
+</div>

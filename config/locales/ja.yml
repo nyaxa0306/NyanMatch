@@ -1,0 +1,32 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        nickname: "ニックネーム"
+        email: "メールアドレス"
+        password: "パスワード"
+        current_password: "パスワード"
+        password_confirmation: "パスワード（確認用）"
+        introduction: "自己紹介"
+      cat:
+        name: "名前"
+        age: "年齢"
+        gender: "性別"
+        prefecture_id: "地域"
+        breed: "種類"
+        personality: "性格"
+        helth: "健康状態"
+        status: "募集ステータス"
+      application:
+        statuses:
+          pending: "未対応"
+          approved: "承認"
+          rejected: "却下"
+    errors:
+      models:
+        user:
+          attributes:
+            nickname:
+              blank: を入力してください
+            password:
+              too_short: は６文字以上で入力してください

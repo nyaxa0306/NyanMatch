@@ -36,6 +36,10 @@ gem "bootsnap", require: false
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  gem "rspec-rails"
+  gem "factory_bot_rails"
+  gem "faker"
+
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
 
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
@@ -55,3 +59,15 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "bootstrap", "~> 5.3"
+gem "sassc-rails"
+gem "jquery-rails"
+
+gem "devise"
+
+gem "rails-i18n"
+
+gem "image_processing", "~> 1.2"
+
+gem "active_hash"

@@ -1,0 +1,46 @@
+<h2 class="mb-4">応募一覧</h2>
+
+<table class="table table-bordered align-middle">
+  <thead class="table-light">
+    <tr>
+      <th>猫の名前</th>
+      <th>応募者</th>
+      <th>応募メッセージ</th>
+      <th>応募日</th>
+      <th>応募状況</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @applications.each do |application| %>
+      <tr>
+        <td><%= link_to application.cat.name, cat_path(application.cat), class: "text-decoration-none" %></td>
+        <td><%= link_to application.user.nickname, user_path(application.user), class: "text-decoration-none" %></td>
+        <td style="white-space: pre-wrap;"><%= application.message %></td>
+        <td><%= application.created_at.strftime("%Y-%m-%d") %></td>
+        <!-- 応募状況 -->
+        <td>
+          <% if current_user == application.cat.user %>
+            <!-- 保護主のとき承認/却下ボタン表示 -->
+            <% if application.pending? %>
+              <%= link_to "承認",  update_status_application_path(application, status: :approved),
+              data: { turbo_method: :patch }, class: "btn btn-success btn-sm" %>
+
+              <%= link_to "却下", update_status_application_path(application, status: :rejected),
+              data: { turbo_method: :patch }, class: "btn btn-danger btn-sm ms-2" %>
+            <% else %>
+            <!-- 決定後はバッジ表示 -->
+              <% status_class = { "approved" => "bg-success", "rejected" => "bg-danger" }[application.status] %>
+            <span class="badge <%= status_class %>"><%= application.status_i18n %></span>
+            <% end %>
+
+          <% else %>
+            <!-- 保護主以外はステータスバッジ表示 -->
+            <% status_class = { "pending" => "bg-secondary", "approved" => "bg-success", "rejected" => "bg-danger" }[application.status] %>
+            <span class="badge <%= status_class %>"><%= application.status_i18n %></span>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
