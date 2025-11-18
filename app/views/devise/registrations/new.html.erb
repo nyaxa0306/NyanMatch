@@ -19,7 +19,7 @@
             <div class="mb-3">
               <%= f.label :nickname, "ニックネーム", class: "form-label" %>
               <%= f.text_field :nickname, autofocus: true, placeholder: "ニックネーム",
-                               class: "form-control #{'is-invalid' if resource.errors[:nickname].present?}" %>
+                              class: "form-control #{'is-invalid' if resource.errors[:nickname].present?}" %>
               <% if resource.errors[:nickname].present? %>
                 <div class="invalid-feedback">
                   <%= resource.errors[:nickname].first %>
@@ -41,7 +41,7 @@
             <div class="mb-3">
               <%= f.label :password, "パスワード（６文字以上）", class: "form-label" %>
               <%= f.password_field :password, autocomplete: "new-password", placeholder: "パスワード",
-                                   class: "form-control #{'is-invalid' if resource.errors[:password].present?}" %>
+                                  class: "form-control #{'is-invalid' if resource.errors[:password].present?}" %>
               <% if resource.errors[:password].present? %>
                 <div class="invalid-feedback">
                   <%= resource.errors[:password].first %>
@@ -52,17 +52,17 @@
             <div class="mb-3">
               <%= f.label :password_confirmation, "パスワード（確認用）", class: "form-label" %>
               <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "パスワード（確認用）",
-                                   class: "form-control #{'is-invalid' if resource.errors[:password_confirmation].present?}" %>
+                                  class: "form-control #{'is-invalid' if resource.errors[:password_confirmation].present?}" %>
               <% if resource.errors[:password_confirmation].present? %>
                 <div class="invalid-feedback">
                   <%= resource.errors[:password_confirmation].first %>
                 </div>
               <% end %>
+            </div>
 
-              <div class="mb-3">
-                <%= f.label :role, "ユーザー区分", class: "form-label" %>
-                <%= f.select :role, [["里親希望さん", "adopter"], ["保護主さん", "protector"]], {}, class: "form-select" %>
-              </div>
+            <div class="mb-3">
+              <%= f.label :role, "ユーザー区分", class: "form-label" %>
+              <%= f.select :role, [["里親希望さん", "adopter"], ["保護主さん", "protector"]], {}, class: "form-select" %>
             </div>
 
             <div class="d-grid">

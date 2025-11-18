@@ -46,7 +46,7 @@
           <%= link_to "削除", cat_path(@cat), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
         </div>
       <% else %>
-          <!-- 投稿者以外表示 -->
+        <!-- 投稿者以外表示 -->
         <%= form_with model: Application.new, url: applications_path do |f| %>
           <%= f.hidden_field :cat_id, value: @cat.id %>
 
