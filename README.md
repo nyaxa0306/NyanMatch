@@ -58,8 +58,9 @@
 - RSpec / Capybara（テスト）
 
 ## インフラ・開発環境
-- Puma（Webサーバ）
-- Ubuntu / WSL2 / Heroku（デプロイ）
+- Ubuntu / WSL2
+- Git / GitHub（バージョン管理）
+- Heroku（デプロイ）
 
 ## 7. ER図  
 ![ER図](https://github.com/nyaxa0306/NyanMatch/blob/main/app/assets/images/ER%E5%9B%B31.png)
