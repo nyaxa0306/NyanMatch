@@ -5,8 +5,7 @@
 
 ## 2. サービスの画像  
 ![ホーム画面](./images/home.png)  
-![猫一覧画面](./images/cats_index.png)  
-※画像は `./images/` 配下に保存  
+![猫一覧画面](./images/cat_show.png)   
 
 ## 3. サービスのURL  
 [https://nyan-match.example.com](https://nyan-match.example.com)  ※実際のURLに置き換え  
@@ -40,49 +39,8 @@
 - Ubuntu / WSL2 / Heroku（デプロイ）  
 
 ## 7. ER図  
-┌─────────────┐      ┌─────────────┐      ┌──────────────┐
-│    Users    │─────>│     Cats    │─────>│ Applications │
-├─────────────┤      ├─────────────┤      ├──────────────┤
-│ id          │      │ id          │      │ id           │
-│ email       │      │ name        │      │ user_id      │
-│ encrypted_pw│      │ age         │      │ cat_id       │
-│ nickname    │      │ gender      │      │ message      │
-│ introduction│      │ breed       │      │ status       │
-│ role        │      │ personality │      │ created_at   │
-│ created_at  │      │ helth       │      │ updated_at   │
-│ updated_at  │      │ status      │      └──────────────┘
-└─────────────┘      │ user_id     │
-                     │ prefecture_id│
-                     │ created_at  │
-                     │ updated_at  │
-                     └─────────────┘
-                           │
-                           │
-                           ▼
-                     ┌─────────────┐
-                     │  Favorites  │
-                     ├─────────────┤
-                     │ id          │
-                     │ user_id     │
-                     │ cat_id      │
-                     │ created_at  │
-                     │ updated_at  │
-                     └─────────────┘
-
-┌───────────────────────┐      ┌───────────────────────┐
-│ ActiveStorage Attachments│───>│ ActiveStorage Blobs   │
-├───────────────────────┤      ├───────────────────────┤
-│ id                    │      │ id                    │
-│ name                  │      │ key                   │
-│ record_type           │      │ filename              │
-│ record_id             │      │ content_type          │
-│ blob_id               │      │ metadata              │
-│ created_at            │      │ service_name          │
-└───────────────────────┘      │ byte_size             │
-                               │ checksum              │
-                               │ created_at            │
-                               └───────────────────────┘
-
+![ER図](./images/ER図1.png)
+![ER図](./images/ER図2.png)
 
 ## 8. 今後の展望  
 - 画像アップロードをS3で管理  
