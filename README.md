@@ -40,98 +40,48 @@
 - Ubuntu / WSL2 / Heroku（デプロイ）  
 
 ## 7. ER図  
-erDiagram
-    USERS ||--o{ CATS : "has many"
-    USERS ||--o{ APPLICATIONS : "has many"
-    USERS ||--o{ FAVORITES : "has many"
+┌─────────────┐      ┌─────────────┐      ┌──────────────┐
+│    Users    │─────>│     Cats    │─────>│ Applications │
+├─────────────┤      ├─────────────┤      ├──────────────┤
+│ id          │      │ id          │      │ id           │
+│ email       │      │ name        │      │ user_id      │
+│ encrypted_pw│      │ age         │      │ cat_id       │
+│ nickname    │      │ gender      │      │ message      │
+│ introduction│      │ breed       │      │ status       │
+│ role        │      │ personality │      │ created_at   │
+│ created_at  │      │ helth       │      │ updated_at   │
+│ updated_at  │      │ status      │      └──────────────┘
+└─────────────┘      │ user_id     │
+                     │ prefecture_id│
+                     │ created_at  │
+                     │ updated_at  │
+                     └─────────────┘
+                           │
+                           │
+                           ▼
+                     ┌─────────────┐
+                     │  Favorites  │
+                     ├─────────────┤
+                     │ id          │
+                     │ user_id     │
+                     │ cat_id      │
+                     │ created_at  │
+                     │ updated_at  │
+                     └─────────────┘
 
-    CATS ||--o{ APPLICATIONS : "has many"
-    CATS ||--o{ FAVORITES : "has many"
-
-    ACTIVE_STORAGE_BLOBS ||--o{ ACTIVE_STORAGE_ATTACHMENTS : "has many"
-    ACTIVE_STORAGE_BLOBS ||--o{ ACTIVE_STORAGE_VARIANT_RECORDS : "has many"
-
-    APPLICATIONS }o--|| USERS : "belongs to"
-    APPLICATIONS }o--|| CATS : "belongs to"
-
-    FAVORITES }o--|| USERS : "belongs to"
-    FAVORITES }o--|| CATS : "belongs to"
-
-    CATS }o--|| USERS : "belongs to"
-
-    ACTIVE_STORAGE_ATTACHMENTS }o--|| ACTIVE_STORAGE_BLOBS : "belongs to"
-    ACTIVE_STORAGE_VARIANT_RECORDS }o--|| ACTIVE_STORAGE_BLOBS : "belongs to"
-
-    USERS {
-        bigint id PK
-        string email
-        string encrypted_password
-        string nickname
-        text introduction
-        integer role
-        datetime created_at
-        datetime updated_at
-    }
-
-    CATS {
-        bigint id PK
-        string name
-        integer age
-        string gender
-        string breed
-        text personality
-        text helth
-        string status
-        bigint user_id FK
-        integer prefecture_id
-        datetime created_at
-        datetime updated_at
-    }
-
-    APPLICATIONS {
-        bigint id PK
-        bigint user_id FK
-        bigint cat_id FK
-        text message
-        integer status
-        datetime created_at
-        datetime updated_at
-    }
-
-    FAVORITES {
-        bigint id PK
-        bigint user_id FK
-        bigint cat_id FK
-        datetime created_at
-        datetime updated_at
-    }
-
-    ACTIVE_STORAGE_BLOBS {
-        bigint id PK
-        string key
-        string filename
-        string content_type
-        text metadata
-        string service_name
-        bigint byte_size
-        string checksum
-        datetime created_at
-    }
-
-    ACTIVE_STORAGE_ATTACHMENTS {
-        bigint id PK
-        string name
-        string record_type
-        bigint record_id
-        bigint blob_id FK
-        datetime created_at
-    }
-
-    ACTIVE_STORAGE_VARIANT_RECORDS {
-        bigint id PK
-        bigint blob_id FK
-        string variation_digest
-    }
+┌───────────────────────┐      ┌───────────────────────┐
+│ ActiveStorage Attachments│───>│ ActiveStorage Blobs   │
+├───────────────────────┤      ├───────────────────────┤
+│ id                    │      │ id                    │
+│ name                  │      │ key                   │
+│ record_type           │      │ filename              │
+│ record_id             │      │ content_type          │
+│ blob_id               │      │ metadata              │
+│ created_at            │      │ service_name          │
+└───────────────────────┘      │ byte_size             │
+                               │ checksum              │
+                               │ created_at            │
+                               └───────────────────────┘
 
 
 ## 8. 今後の展望  
