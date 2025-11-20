@@ -23,7 +23,7 @@ class Cat < ApplicationRecord
 
   def display_image(width: 400, height: 300)
     if image.attached?
-      image.variant(resize_to_limit: [width, height])
+      image.variant(resize_to_limit: [width, height]).processed
     else
       "default_cat.jpg"
     end
