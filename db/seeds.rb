@@ -1,8 +1,26 @@
 # 保護主ユーザー
-user = User.find_or_create_by!(email: "hogonushi@example.com") do |u|
+user = User.find_or_create_by!(email: "nyaxa@example.com") do |u|
+  u.password = "password"
+  u.nickname = "にゃぁ"
+  u.role = :protector
+  u.introduction = "猫5匹飼ってます"
+end
+# テストユーザー
+test_protector = User.find_or_create_by!(email: "test.hogo@example.com") do |u|
   u.password = "password"
   u.nickname = "保護主"
+  u.role = :protector
 end
+
+test_adopter = User.find_or_create_by!(email: "test.sato@example.com") do |u|
+  u.password = "password"
+  u.nickname = "里親希望"
+  u.role = :adopter
+end
+
+puts "テストユーザー2件作成完了："
+puts "・test.hogo@example.com / password（保護主）"
+puts "・test.sato@example.com / password（里親希望）"
 
 # 猫データ
 cats_data = [
