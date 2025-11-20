@@ -25,7 +25,7 @@ class Cat < ApplicationRecord
     if image.attached?
       image.variant(resize_to_limit: [width, height])
     else
-      ActionController::Base.helpers.asset_path("default_cat.jpg")
+      "default_cat.jpg"
     end
   end
 
