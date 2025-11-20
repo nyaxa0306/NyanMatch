@@ -14,14 +14,23 @@
 ## 3. サービスのURL  
 [https://nyan-match-e22ca14a51cd.herokuapp.com/](https://nyan-match-e22ca14a51cd.herokuapp.com/)
 
-## 4. 開発背景
+## 4. テストユーザー（動作確認用）
+
+| 種類 | メールアドレス | パスワード |
+|------|----------------------|------------|
+| 保護主 | test.hogo@example.com | password |
+| 里親希望 | test.sato@example.com | password |
+
+※ログイン後にプロフィール編集・猫の登録・応募体験が可能です。
+
+## 5. 開発背景
 身近な知人が「猫を保護したのに引き取り手が見つからない」と苦労している姿を見たこと、  
 そして自分自身も既に複数の猫を飼っており、もし今後保護することがあれば同じように困るかもしれないと感じたことがきっかけでした。
 
 保護主と里親希望者をつなぐ仕組みは存在するものの、情報管理や連絡方法がバラバラで負担が大きいという課題があります。  
 そこで、猫の登録から応募までをシンプルに行えるサービスを目指して「にゃんまっち。」を開発しました。
 
-## 5. 機能
+## 6. 機能
 
 ### ユーザー関連
 - ユーザー登録・ログイン（Devise 使用）
@@ -45,7 +54,7 @@
 - お気に入り一覧
 - 応募申請の一覧
 
-## 6. 主な使用技術
+## 7. 主な使用技術
 
 ### フロントエンド
 - HTML / ERB / CSS / JavaScript
@@ -57,15 +66,16 @@
 - Devise（認証）, ActiveStorage（画像管理）
 - RSpec / Capybara（テスト）
 
-## インフラ・開発環境
+### インフラ・開発環境
 - Ubuntu / WSL2
 - Git / GitHub（バージョン管理）
 - Heroku（デプロイ）
 
-## 7. ER図  
+## 8. ER図  
 ![ER図](https://github.com/nyaxa0306/NyanMatch/blob/main/app/assets/images/ER%E5%9B%B31.png)
 ![ER図](https://github.com/nyaxa0306/NyanMatch/blob/main/app/assets/images/ER%E5%9B%B32.png)
 
-## 8. 今後の展望  
-- 画像アップロードをS3で管理 
+## 9. 今後の展望  
+- 応募後のチャット / メッセージ機能
+- 通知機能（応募・お気に入り・承認）
 - モバイル最適化、PWA対応  
